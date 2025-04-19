@@ -67,6 +67,8 @@ const sessionOptions = {
     },
 };
 
+app.use("/listings", listingRouter);
+
 app.get("/", (req, res) => {
     res.redirect("/listings");
 })
@@ -116,16 +118,15 @@ app.use("/", userRouter);
 //     res.send("successfull testing");
 // });
 
-
-app.all("*", (req, res, next) => {
-    next(new ExpressError(404, "Page not found"));
-})
-
 app.use((err, req, res, next) => {
     let { statusCode = 500, message = "something went wrongF" } = err;
     res.status(statusCode).render("error.ejs", { message })
 
     // res.status(statusCode).send(message);
+})
+
+app.all("*", (req, res, next) => {
+    next(new ExpressError(404, "Page not found"));
 })
 
 app.listen(8080, () => {
