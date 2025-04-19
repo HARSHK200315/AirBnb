@@ -67,10 +67,6 @@ const sessionOptions = {
     },
 };
 
-app.use("/listings", listingRouter);
-
-
-
 app.use(session(sessionOptions));
 app.use(flash())
 
@@ -82,6 +78,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
+    console.log("Current User:", req.user); // Add this line for debugging
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     res.locals.currUser = req.user;
