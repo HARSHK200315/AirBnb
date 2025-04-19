@@ -57,6 +57,10 @@ body {
     align-items: space-evenly;
 }
 
+.container-fluid{
+    background-color: white;
+}
+
 /* cards */
 .listing-card {
     border: none !important;
