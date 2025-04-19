@@ -69,9 +69,6 @@ const sessionOptions = {
 
 app.use("/listings", listingRouter);
 
-app.get("/", (req, res) => {
-    res.redirect("/listings");
-})
 
 
 app.use(session(sessionOptions));
@@ -104,6 +101,9 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+})
 
 // app.get("/testListing", async(req, res) => {
 //     let sampleListing = new Listing({
